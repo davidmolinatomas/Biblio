@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>listview demo</title>
+	
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta content="wine, winery" name="keywords" />
+	<meta content="Personal Lite Winery" name="description" />
+	<script src="js/libs/include.js"></script>
+	<script src="js/lite-dependencies.js"></script>
+</head>
+
+<body>
+<div data-role="page" id="product_list" >
+	<div data-role="header" data-position="fixed">
+		<h3>
+			LiteWinery
+		</h3>
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li>
+					<a href="product_search.html" data-transition="fade" data-theme="" data-icon="search">
+						Search
+					</a> 
+				</li>
+				<li>
+					<a href="product_new.html" data-transition="fade" data-theme="" data-icon="plus">
+						New
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="content" id="wineListContainer">
+	</div>
+	<div data-role="footer">
+		<div  data-role="footer" data-position="fixed">
+		</div>
+	</div>
+</div>
+<script src="js/initOptions.js">alert("9");</script>
+<script src="js/LiteWinery.js"></script>
+<script src="js/messages.js"></script>
+</body>
+</html>

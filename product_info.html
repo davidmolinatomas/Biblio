@@ -1,0 +1,459 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>listview demo</title>
+	
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta content="wine, winery" name="keywords" />
+	<meta content="Personal Lite Winery" name="description" />
+
+</head>
+
+<script type="text/javascript">
+
+var vino = new Object();
+var idVino;
+
+var listaTipoUva = new Array();
+var contTipoUva;
+
+var listaTiendas = new Array();
+var conTienda;
+
+ 
+/**
+ * Funcion select VinoTipoUva
+ * ===========================================================================================================================================
+ */ 
+ 
+/* function selectVinoTipoUvaByIdVino(){
+	alert("dentro de  selectVinoTipoUvaByIdVino");
+	db.transaction(selectNotasDeCataById,successSelectVinoTipoUva, errorSelectVinoTipoUva);
+}
+
+function selectVinoTipoUvaByIdId(tx){
+		alert("dentro de selectVinoTipoUvaByIdId");
+		var conditions = new Array();
+		conditions[0]= idVino;
+		tx.executeSql('SELECT * FROM vinoTipoUva where idVino = ?', conditions, successSelectVinoTipoUva, errorSelectVinoTipoUva);
+}
+ 
+ 
+function successSelectVinoTipoUva(tx, results){
+	alert ("successSelectVinoTipoUva");
+	alert("Filas retornadas = " + results.rows.length);
+	var len = results.rows.length;
+	
+	for (var i=0; i<len; i++){
+		listaTipoUva[i] = new Object();
+		listaTipoUva[i].idTipoUva = results.rows.item(i).idTipoUva;
+		listaTipoUva[i].porcentaje = results.rows.item(i).porcentaje;
+	}
+	contTipoUva = 0;
+	while(contTipoUva<listaTipoUva.length){
+		selectTipoUvaByIdTipoUva();
+		contTipoUva ++;
+	}
+	
+	// Creando los span
+	for(var i=0; i<listaTipoUva.length; i++)
+	{
+		var html='';
+		html += '<span class="comment" id="spanVariedadUva'+i+'"></span><span class="comment" id="spanPorcentaje'+i+'"></span><br />';
+		$("#listaVariedadUvas").append(html);
+	}
+	$("#listaVariedadUvas").listview('refresh');
+	alert("Finalizada la creacion de los span de variedades uvas.. se proceda a rellenar con valor");
+	// Rellenando los span con los valores
+	for (var j=0;j<listaTipoUva.length; j++)
+	{
+		document.getElementById('spanVariedadUva'+j).innerHTML = listaTipoUva[j].tipoUva;
+		document.getElementById('spanPorcentaje'+j).innerHTML = listaTipoUva[j].porcentaje;
+	} 
+	
+	alert ("Numero de variedades: "+contTipoUva);
+}
+ 
+function errorSelectVinoTipoUva (){
+	alert (" errorSelectVinoTipoUva");
+} */
+
+/**
+ * Funcion select TipoUva
+ * ===========================================================================================================================================
+ */
+/* function selectTipoUvaByIdTipoUva(){
+	alert("dentro de  selectTipoUvaByIdTipoUva");
+	db.transaction(selectTipoUvaByIdId,successSelecTipoUva, errorSelectTipoUva);
+}
+
+function selectTipoUvaByIdId(tx){
+		alert("dentro de selectTipoUvaByIdId");
+		var conditions = new Array();
+		conditions[0]= listaTipoUva[contTipoUva].idTipoUva;
+		tx.executeSql('SELECT * FROM tipoUva where idTipoUva = ?', conditions, successSelecTipoUva, errorSelectTipoUva);
+}
+ 
+ 
+function successSelecTipoUva(tx, results){
+	alert ("successSelecTipoUva");
+	alert("Filas retornadas = " + results.rows.length);
+	var len = results.rows.length;
+	listaTipoUva[contTipoUva].tipoUva = results.rows.item(contTipoUva).tipoUva;
+}
+ 
+function errorSelectTipoUva (){
+	alert (" errorSelectTipoUva");
+}
+ */
+/**
+
+
+/**
+ * Funcion select Lugares de compra
+ * ===========================================================================================================================================
+ */
+
+/* function selectLugaresDeCompra(){
+	alert("dentro de  selectLugaresDeCompra");
+	db.transaction(selectVinoTiendaByIdVino,successSelectVinoTienda, errorSelectVinoTienda);
+}
+
+function selectVinoTiendaByIdVino(tx){
+		alert("dentro de selectVinoTiendaByIdVino");
+		var conditions = new Array();
+		conditions[0]= idVino;
+		tx.executeSql('SELECT * FROM vinoTienda where idVino = ?', conditions, successSelectVinoTienda, errorSelectVinoTienda);
+}
+ 
+ 
+function successSelectVinoTienda(tx, results){
+	alert ("successSelectVinoTienda");
+	alert("Filas retornadas = " + results.rows.length);
+	var len = results.rows.length;
+	
+	for (var i=0; i<len; i++){
+		listaTiendas[i] = new Object();
+		listaTiendas[i].idTienda = results.rows.item(i).idTienda;
+		listaTiendas[i].precio = results.rows.item(i).precio;
+	}
+	contTienda = 0;
+	while(contTienda<listaTiendas.length){
+		selectTiendasByIdTienda();
+		contTienda ++;
+	}
+	
+	// Creando los span
+	for(var i=0; i<listaTiendas.length; i++)
+	{
+		var html='';
+		html += '<li class="withoutimage" style="height:60px!important"><span class="name" id="spanNombreTienda'+i+'"></span><span class="comment" id="spanDireccion'+i+'"></span></br>';
+		html +='<span class="name" id="spanPrecio'+i+'"></span></li>';
+		$("#listaLugaresDeCompra").append(html);
+	}
+	$("#listaLugaresDeCompra").listview('refresh');
+	alert("Finalizada la creacion de los span de tiendas.. se proceda a rellenar con valor");
+	// Rellenando los span con los valores
+	for (var j=0;j<listaTiendas.length; j++)
+	{
+		document.getElementById('spanNombreTienda'+j).innerHTML = listaTiendas[j].nombreTienda;
+		document.getElementById('spanDireccion'+j).innerHTML = listaTiendas[j].direccion;
+		document.getElementById('spanPrecio'+j).innerHTML = listaTiendas[j].precio;
+	} 
+	
+	alert ("Numero de variedades: "+contTipoUva);
+}
+ 
+function errorSelectVinoTienda (){
+	alert (" errorSelectVinoTienda");
+}
+ */
+/**
+ * Funcion select Tiendas
+ * ===========================================================================================================================================
+ */
+/* function selectTiendasByIdTienda(){
+	alert("dentro de  selectTiendasByIdTienda");
+	db.transaction(selectTiendaById,successSelecTienda, errorSelectTienda);
+}
+
+function selectTiendaById(tx){
+		alert("dentro de selectTiendaById");
+		var conditions = new Array();
+		conditions[0]= listaTipoUva[contTipoUva].idTipoUva;
+		tx.executeSql('SELECT * FROM tienda where idTienda = ?', conditions, successSelecTienda, errorSelectTienda);
+}
+ 
+ 
+function successSelecTienda(tx, results){
+	alert ("successSelecTienda");
+	alert("Filas retornadas = " + results.rows.length);
+	var len = results.rows.length;
+	listaTiendas[contTienda].nombreTienda = results.rows.item(contTienda).nombreTienda;
+	listaTiendas[contTienda].direccion = results.rows.item(contTienda).direccion;
+}
+ 
+function errorSelectTienda (){
+	alert (" errorSelectTienda");
+} */
+
+</script>
+
+<body>
+<div data-role="page" id="product_info">
+	<div data-role="header" data-position="fixed" id="product_info_navigationBar">
+		<h3>LiteWinery</h3>
+		<div data-role="navbar" data-iconpos="top" >
+			<ul>
+				<li><a  href="index.html" data-theme="" data-icon="home">Home</a></li>
+				<li><a href="product_search.html" data-transition="fade" data-theme="" data-icon="search">Search</a></li>
+				<li><a href="#" onclick="goToEdition();" data-transition="fade" data-theme="" data-icon="edit">Edit</a></li>
+				<li><a href="#" onclick="eliminarProducto();" data-transition="fade" data-theme="" data-icon="minus">Delete</a></li>
+			</ul>
+		</div>
+				
+		<!-- <h3>
+			LiteWinery
+		</h3>
+		<div data-role="navbar" data-iconpos="top" >
+			<ul>
+				<li>
+					<a  href="index.html" data-theme="" data-icon="home">
+				
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="product_search.html" data-transition="fade" data-theme="" data-icon="search">
+						Search
+					</a>
+				</li>
+				<li>
+					<a onclick="editProduct_Info();" data-transition="fade" data-theme="" data-icon="edit">
+						Edit
+					</a>
+				</li>
+				<li>
+					<a href="index.html" onclick="deleteVino(getURLParams());" data-transition="fade" data-theme="" data-icon="minus">
+						Delete
+					</a>
+				</li>
+			</ul>
+		</div> -->
+	</div>
+	
+	<div data-role="content" id="product_info_container">
+	
+		<ul data-role="listview" data-inset="true">
+			<li class="title">General</li>
+			<li class="withoutimage"><span class="name">Nombre</span><br>
+				<span class="comment2" id="spanNombre"></span></li>
+			<li class="withoutimage"><span class="name">Añada</span><br>
+				<span class="comment2" id = "spanAnada"></span></li>
+			<li class="withoutimage"><span class="name">Tipo</span><br>
+				<span class="comment2" id= "spanTipoVino"></span></li>
+			<li class="withoutimage"><span class="name">Alcohol</span><br>
+				<span class="comment2" id= "spanAlcohol"></span><span class="comment2" id= "spanAlcohol"> %</span></li>
+			<li class="withoutimage"><span class="name">Bodega</span><br>
+				<span class="comment2" id= "spanBodega"></span></li>
+			<li class="withoutimage"><span class="name">Denominación de origen</span><br>
+				<span class="comment2" id= "spanDOrigen"></span></li>
+			<li class="withoutimage"><span class="name">País de origen</span><br>
+				<span class="comment2" id ="spanPaisOrigen"></span></li>
+			<li class="withoutimage" style="height:60px!important"><span class="name">Maduración</span><br>
+				<span class="comment2" id= "spanMaduracion" style="white-space:normal;"></span></li>
+			<li class="withoutimage" style="height:75px!important" id="listaVariedadUvas">
+				<span class="name">Variedades de uva</span><span class="comment" id="spanVariedadUva0"></span><span class="comment" id="spanPorcentaje0"></span><br/></li>
+		</ul>
+		<div data-role="collapsible-set" data-theme="a" data-content-theme="d">
+			<div id="divCollapsibleNotas" data-role="collapsible">
+				<h2 id="h2CollapsibleNotas" data-icon="arrow-d">Notas</h2>
+				<span id= "spanCollapsibleNotas"></span>
+				<ul id="ulCollapsibleNotas" data-role="listview" data-split-icon="minus" data-split-theme="d" data-divider-theme="d">
+					<li data-role="list-divider"></li>
+					<!-- <li data-role="fieldcontain">
+						<a href="index.html">
+							<p><strong>'+LiteWinery.listaDeNotas[i].nota+'</strong></p>
+							<p class="ui-li-aside"><strong>6:24</strong></p>
+						</a>
+						<a id="linkDeleteNota'+i+'"  onclick="refreshNotas('+LiteWinery.listaDeNotas[i].idNota+');" data-rel="popup" data-position-to="window" data-transition="pop">Delete</a>
+					</li> -->
+					<li><a href="#popupAgregarNota" data-rel="popup" data-position-to="window">	
+							<h3>Agregar nuevo</h3>			
+						</a>				
+					</li>
+				</ul>
+			</div>
+		</div>
+	
+<!-- 		 <ul data-role="listview" data-inset="true">
+			<li class="title">General</li>
+			<li class="withoutimage"><span class="name">Nombre</span><br>
+			<span class="comment2" id="spanNombre"><input type="text" id="inputNombre"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Añada</span><br>
+			<span class="comment2" id = "spanAnada"><input type="text" id="inputAnada"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Tipo</span><br>
+			<span class="comment2" id= "spanTipoVino"><input type="text" id="inputTipoVino"></span>
+			</li>
+			<li class="withoutimage" style="height:75px!important" id="listaVariedadUvas">
+				<span class="name">Variedades de uva</span>
+				<span class="comment" id="spanVariedadUva0"></span><span class="comment" id="spanPorcentaje0"></span><br />
+			</li>
+			<li class="withoutimage"><span class="name">Alcohol</span><br>
+			<span class="comment2" id= "spanAlcohol"><input type="text" id="inputAlcohol"></span><span class="comment2" > %</span>
+			</li>
+			<li class="withoutimage"><span class="name">Bodega</span><br>
+			<span class="comment2" id= "spanBodega"><input type="text" id="inputBodega"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Denominación de origen</span><br>
+			<span class="comment2" id= "spanDOrigen"><input type="text" id="inputDOrigen"></span>
+			</li>
+			<li class="withoutimage"><span class="name">País de origen</span><br>
+			<span class="comment2" id ="spanPaisOrigen"><input type="text" id="inputPaisOrigen"></span>
+			</li>
+			<li class="withoutimage" style="height:60px!important"><span class="name">Maduración</span><br>
+			<span class="comment2" id= "spanMaduracion" style="white-space:normal;"><input type="text" id="inputMaduracion"></span>
+			</li>
+		</ul>  -->
+
+<!-- 		<ul data-role="listview" data-inset="true">
+			<li class="title">Notas de cata personal</li>
+			<li class="withoutimage"><span class="name">Color</span><span class="comment" id=spanColorPuntuacion></span><br>
+					<span class="comment" id=spanColorOpinio></span>
+			</li>
+			<li class="withoutimage"><span class="name">Aroma</span><span class="comment" id="spanAromaPuntuacion"></span><br>
+					<span class="comment" id=spanAromaOpinio></span>
+			</li>
+			<li class="withoutimage" style="height:60px!important"><span class="name">Gusto</span><span class="comment" id="spanGustoPuntuacion"></span><br>
+					<span class="comment" id=spanGustoOpinio></span>
+			</li>
+			<li class="withoutimage"><span class="name">Global</span><span class="comment" id="spanGlobalPuntuacion"></span><br>
+					<span class="comment" id=spanGlobalOpinio></span>
+			</li>
+		</ul>
+
+		<ul id="listaBodegasPersonales" data-role="listview" data-inset="true">
+			<li class="title">Bodega personal</li>
+			<li class="withoutimage"><span class="name">Mi Bodega</span><span class="comment" id="spanCantidad0"></span></li>
+			
+		</ul>
+
+		<ul  id="listaLugaresDeCompra" data-role="listview" data-inset="true">
+			<li class="title">Lugares de compra</li>
+			<li class="withoutimage" style="height:60px!important"><span class="name" id="spanNombreTienda0"></span><span class="comment" id="spanDireccion0"></span></br>
+			<span class="name" id="spanPrecio0"></span></li>
+			
+			
+		</ul>
+
+		<ul id="listaNotas" data-role="listview" data-inset="true">
+			<li class="title">Notas</li>
+			<li class="withoutimage"><span class="name" id="spanFecha0"></span><span class="comment" id="spanNota0"></span></li>
+			
+		</ul> -->
+		
+		
+		
+
+		 	<!-- <div data-role="collapsible-set" data-theme="a" data-content-theme="d">
+				
+				<div data-role="collapsible">
+					<h2 data-icon="arrow-d">Tiendas</h2>
+					
+					<ul data-role="listview" data-split-icon="minus" data-split-theme="d" data-divider-theme="d">
+						<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">248</span></li>
+						<li data-role="fieldcontain">
+							<a href="index.html">
+							<h3>Stephen Weber</h3>
+							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+							<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+							</a>
+							<a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+						</li>
+						<li><a href="index.html">
+							<h3>jQuery Team</h3>
+							<p><strong>Boston Conference Planning</strong></p>
+							<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+							<p class="ui-li-aside"><strong>9:18</strong>AM</p>
+						</a></li>
+						<li><a href="index.html">
+							<h3>Agregar nuevo</h3>
+						</a></li>
+					</ul>
+				</div>
+				<div data-role="collapsible">
+					<h2>Bodegas</h2>
+					<ul data-role="listview" data-theme="d" data-divider-theme="d">
+						<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">248</span></li>
+						<li><a href="index.html">
+							<h3>Stephen Weber</h3>
+							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+							<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+						</a></li>
+						<li><a href="index.html">
+							<h3>jQuery Team</h3>
+							<p><strong>Boston Conference Planning</strong></p>
+							<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+							<p class="ui-li-aside"><strong>9:18</strong>AM</p>
+						</a></li>
+					</ul>
+				</div>
+				<div data-role="collapsible">
+					<h2>Notas de cata</h2>
+					<ul data-role="listview" data-theme="d" data-divider-theme="d">
+						<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">248</span></li>
+						<li><a href="index.html">
+							<h3>Stephen Weber</h3>
+							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+							<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+						</a></li>
+						<li><a href="index.html">
+							<h3>jQuery Team</h3>
+							<p><strong>Boston Conference Planning</strong></p>
+							<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+							<p class="ui-li-aside"><strong>9:18</strong>AM</p>
+						</a></li>
+					</ul>
+				</div>
+				<div data-role="collapsible">
+					<h2>Notas</h2>
+					<ul data-role="listview" data-theme="d" data-divider-theme="d">
+						<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">248</span></li>
+						<li><a href="index.html">
+							<h3>Stephen Weber</h3>
+							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+							<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+						</a></li>
+						<li><a href="index.html">
+							<h3>jQuery Team</h3>
+							<p><strong>Boston Conference Planning</strong></p>
+							<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+							<p class="ui-li-aside"><strong>9:18</strong>AM</p>
+						</a></li>
+					</ul>
+				</div>
+			</div> -->
+		
+		<div data-role="popup" id="popupAgregarNota">
+			<p>This is a completely basic popup, no options set.<p>
+		</div>
+
+	</div>
+	
+	<div data-role="footer">
+		<div  data-role="footer" data-position="fixed">
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

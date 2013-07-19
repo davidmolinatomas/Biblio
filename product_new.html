@@ -1,0 +1,499 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>listview demo</title>
+	
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta content="wine, winery" name="keywords" />
+	<meta content="Personal Lite Winery" name="description" />
+	
+</head>
+
+<script type="text/javascript">
+
+/* var variedadesUva = new Array();
+var tipoUva = new Object();
+var vinoTipoUva = new Object();
+var lastIdVino;
+
+var listaNombreUvas = new Array();
+var contListaNombreUvas;
+
+var notasDeCata = new Object();
+
+var listaNombreBodegasPersonales= new Array();
+var contListaBodegasPersonales;
+var bodegaPersonal = new Array();
+
+var lastIdTienda;
+var contTiendas;
+var listaNombreTiendas= new Array();
+var vinoTienda = new Array();
+var listaTiendas = new Array();
+
+var vinoNota = new Object();
+var contNotas;
+
+var contVariedadUva = 0;
+
+var contBodegaPersonal = 0;
+var contTienda = 0;  */
+
+/*
+$(document).ready(function() {
+	 alert("Abriendo base datos para cargar db");
+    //openDataBase();
+   // getLastIdVino();
+   // getLastIdTienda();
+});*/
+
+
+/**
+ * Funciones de creacion de objetos para realizar querys 
+ */
+/* 
+
+function crearObjetoNotasDeCata (){
+	alert("Creacion objeto Notas de cata");
+	notasDeCata.idVino  = lastIdVino;
+	notasDeCata.colorOpinion = document.getElementById("inputColorOpinion").value;
+	notasDeCata.colorPuntuacion = document.getElementById("inputColorPuntuacion").value;
+	notasDeCata.aromaOpinion = document.getElementById("inputAromaOpinion").value;
+	notasDeCata.aromaPuntuacion = document.getElementById("inputAromaPuntuacion").value;
+	notasDeCata.gustoOpinion = document.getElementById("inputGustoOpinion").value;
+	notasDeCata.gustoPuntuacion = document.getElementById("inputGustoPuntuacion").value;
+	notasDeCata.globalOpinion = document.getElementById("inputGlobalOpinion").value;
+	notasDeCata.globalPuntuacion = document.getElementById("inputGlobalPuntuacion").value;
+}
+
+function crearObjetoVinoNota(){
+	alert("Creacion objeto Vino nota");
+	vinoNota.idVino = lastIdVino;
+	vinoNota.nota = document.getElementById("inputAnotacion"+contNotas).value;
+	vinoNota.fecha = calcularFechaActual();
+}
+
+function insertarVariedadesUva()
+{   alert("Dentro de insertarVariedadesUva");
+	while(document.getElementById("inputTipoUva"+contListaNombreUvas)!=null){
+		listaNombreUvas[contListaNombreUvas] = document.getElementById("inputTipoUva"+contListaNombreUvas).value;
+		selectTipoUvaByNombre();
+		contListaNombreUvas++;	
+	}
+	
+	for(var i = 0; i< variedadesUva.length-1; i++){
+		
+		insertVinoTipoUva(variedadesUva[i]);
+	}
+	
+}
+
+function insertarNotasDeCata(){
+	alert("Dentro de insertarNotas de cata");
+	crearObjetoNotasDeCata();
+	insertNotasDeCata(notasDeCata);
+}
+
+function insertarBodegaPersonal(){
+	alert("Dentro de insertarBodegaPersonal");
+	contListaBodegasPersonales=0;
+	while(document.getElementById("inputNombreBodegaPersonal"+contListaBodegasPersonales)!=null){
+		listaNombreBodegasPersonales[contListaBodegasPersonales] = document.getElementById("inputNombreBodegaPersonal"+contListaBodegasPersonales).value;
+		selectBodegasPersonalesByNombre();
+		contListaBodegasPersonales++;	
+	}
+	
+	for(var i = 0; i< bodegaPersonal.length-1; i++){
+		
+		insertVinoBodegaPersonal(bodegaPersonal[i]);
+	}
+
+}
+
+function insertarTiendas(){
+	alert("Dentro de insertarTiendas");
+	contTiendas=0;
+	while(document.getElementById("inputNombreTienda"+contTiendas)!=null){
+		listaNombreTiendas[contTiendas] = document.getElementById("inputNombreTienda"+contTiendas).value;
+		listaTiendas[contTiendas] = new Object();
+		listaTiendas[contTiendas].nombreTienda = document.getElementById("inputNombreTienda"+contTiendas).value;
+		listaTiendas[contTiendas].direccion = document.getElementById("inputDireccion"+contTiendas).value; 
+		selectTiendasAllByNombre();
+		contTiendas++;
+	}
+	
+	
+	for(var i=0; i<vinoTienda.length-1;i++)
+	{
+		insertVinoTienda(vinoTienda[i]);
+	}
+}
+
+function instertarNotas(){
+	alert("Dentro de insertarNotas");
+	crearObjetoVinoNota()
+	insertVinoNota(vinoNota);
+}
+ */
+
+/**
+ * Funciones select 
+ * Funcion seleccionar tipo uva
+ * ===========================================================================================================================================
+ */
+/* function selectTipoUvaByNombre(){
+		alert("dentro de  selectVinoInfo");
+		db.transaction(selectTipoUvaByNombreUva,successSelectTipoUva, errorSelectTipoUva);
+}
+
+function selectTipoUvaByNombreUva(tx){
+		alert("Realizando la query");
+		 var conditions = new Array();
+		 conditions[0]= listaNombreUvas[contListaNombreUvas];
+		 
+		 alert("conditions[0]"+conditions[0]);
+		tx.executeSql('SELECT * FROM tipoUva where tipoUva = ?', conditions, successSelectTipoUva, errorSelectTipoUva);
+		
+}
+
+
+function successSelectTipoUva(tx, results){
+	alert("Dentro de successSelectTipoUva");
+	if(result!=null)
+	{
+		for(var i=0; i<results.rows.length-1; i++){
+				variedadesUva[i] = new Object();
+				variedadesUva[i].idTipoUva =results.rows.item(i).idTipoUva;
+				variedadesUva[i].porcentaje = document.getElementById("inputPorcentajeUva"+i).value;
+				variedadesUva[i].idVino =lastIdVino;
+			}
+		
+	} 
+}
+	
+
+function errorSelectTipoUva (){
+	alert ("Error Select");
+} */
+/**
+ * Funciones select 
+ * Funcion seleccionar bodegas Personales
+ * ===========================================================================================================================================
+ */
+
+/* function selectBodegasPersonalesByNombre(){
+		alert("dentro de  selectBodegasPersonalesByNombre");
+		db.transaction(selectBodegaPersonalByNombre,successSelectBodegaPersonal, errorSelectBodegaPersonal);
+}
+
+function selectBodegaPersonalByNombre(tx){
+		alert("dentro de selectBodegaPersonalByNombre");
+		var conditions = new Array();
+		conditions[0]= listaNombreBodegasPersonales[contListaBodegasPersonales];
+		tx.executeSql('SELECT * FROM bodegaPersonal where nombreBodega = ?', conditions, successSelectBodegaPersonal, errorSelectBodegaPersonal);
+}
+
+
+function successSelectBodegaPersonal(tx, results){
+	alert("dentro de successSelectBodegaPersonal");
+	if(result!=null)
+	{
+		for(var i=0; i<results.rows.length-1; i++){
+				bodegaPersonal[i] = new Object();
+				bodegaPersonal[i].idBodegaPersonal =results.rows.item(i).idBodegaPersonal;
+				bodegaPersonal[i].cantidad = document.getElementById("inputCantidad"+i).value;
+				bodegaPersonal[i].idVino =lastIdVino;
+			}
+		
+	} 
+}
+	
+
+function errorSelectBodegaPersonal (){
+	alert (" errorSelectBodegaPersonal");
+} */
+
+/**
+ * Funciones select 
+ * Funcion seleccionar tiendas
+ * ===========================================================================================================================================
+ */
+
+/* function selectTiendasAllByNombre(){
+		alert("dentro de  selectTiendasAllByNombre");
+		db.transaction(selectTiendaByNombre,successSelectTienda, errorSelectTienda);
+}
+
+function selectTiendaByNombre(tx){
+		alert("dentro de selectTiendaByNombre");
+		var conditions = new Array();
+		conditions[0]= listaNombreTiendas[contTiendas];
+		tx.executeSql('SELECT * FROM tienda where nombreTienda = ?', conditions, successSelectTienda, errorSelectTienda);
+}
+
+
+function successSelectTienda(tx, results){
+	alert("dentro de successSelectTienda");
+	if(result!=null)
+	{
+		for(var i=0; i<results.rows.length-1; i++){
+				vinoTienda[i] = new Object();
+				vinoTienda[i].fechaActualizacion = document.getElementById("inputFechaActualizada"+i).value;
+				vinoTienda[i].precio = document.getElementById("inputPrecio"+i).value;
+				vinoTienda[i].idVino =lastIdVino;
+				vinoTienda[i].idTienda =results.rows.item(i).idTienda;
+			}
+		
+	} 
+	else 
+	{
+		insertTienda(listaTiendas[contTiendas]);
+	}
+}
+	
+
+function errorSelectTienda (){
+	alert (" errorSelectBodegaPersonal");
+} */
+
+
+/**
+ * Funcion select all vinos para conocer el idVino
+ * ===========================================================================================================================================
+ */
+
+/* function getLastIdVino(){
+		alert("dentro de getLastIdVino");
+		db.transaction(getIdVino,successGetIdVino, errorGetIdVino);
+}
+function getIdVino(tx){
+		alert("dentro de getIdVino");
+		tx.executeSql('SELECT * FROM vino', [], successGetIdVino, errorGetIdVino);
+		
+}
+
+function successGetIdVino(tx, results){
+	alert ("dentro de successSelectGetIdVino");
+	if(results != null){
+	
+		lastIdVino = results.rows.item(results.rows.length-1).idVino +1;
+	}
+	else
+	{
+		lastIdVino = 1;
+	}
+	alert("lastIdVino: "+lastIdVino);
+}
+
+function errorGetIdVino (){
+	alert ("Error errorGetIdVino");
+} */
+/**
+ * Funcion getLastIdTienda
+ * ===========================================================================================================================================
+ */
+/* function getLastIdTienda(){
+		alert("dentro de getLastIdTienda");
+		db.transaction(getIdTienda,successGetIdTienda, errorGetIdTienda);
+}
+function getIdTienda(tx){
+		alert("dentro de getIdTienda");
+		tx.executeSql('SELECT * FROM tienda', [], successGetIdTienda, errorGetIdTienda);
+		
+}
+
+function successGetIdTienda(tx, results){
+	alert ("successGetIdTienda");
+	try{
+		if(results != null){
+		alert("dentro de if results != null");
+		alert(results);
+		alert("results");
+		alert(results.rows);
+		alert("results.rows");
+		alert(results.rows.length);
+		alert("results.rows.length");
+		
+		if(results.rows.length!=0){
+			lastIdTienda = results.rows.item(results.rows.length-1).idTienda +1;
+			}
+		}
+	
+	}catch(err){
+		
+		alert("Error en el catch");
+	}
+}
+
+function errorGetIdTienda (){
+	alert ("Error errorGetIdTienda");
+	lastIdTienda = 1;
+	alert("lastIdTienda: "+lastIdTienda);
+} */
+
+/**
+*
+* Funciones add elemento gráfico
+*/
+
+/* function addVariedadUva(){
+	alert("Dentro de addVariedadUva");
+	contVariedadUva++;
+	alert("contVariedadUva"+contVariedadUva);
+	var html='';
+	html += '<span class="comment"><input class="inputNuevoProducto" id="inputTipoUva'+contVariedadUva+'" type="text"></span>';
+	html +=	'<span class="comment"><input class="inputNuevoProducto" id="inputPorcentajeUva'+contVariedadUva+'" type="text"></span>';
+	html +=	'<span class="name">%</span>';
+	alert(html);
+	
+	$("#listaVariedadesUva").append(html);
+	alert("final cargar lista");
+	$("#listaVariedadesUva").listview('refresh');
+}
+
+function addTienda(){
+	alert("Dentro de addTienda");
+	contTienda++;
+	var html='<li><span class="comment"><input class="inputNuevoProducto" id="inputDireccion'+contTienda+'" type="text"></span>&nbsp;';
+		html +=	'<span class="comment"><input class="inputNuevoProducto" id="inputPrecio'+contTienda+'" type="text"></span>&nbsp;';
+		html +=	'<span class="comment"><input class="inputNuevoProducto" id="inputFechaActualizada'+contTienda+'" type="text"></span> <br></li>';
+	alert(html);
+	$("#listaTiendas").append(html);
+	alert("final cargar lista");
+	$("#listaTiendas").listview('refresh');
+
+	
+}
+function addBodegaPersonal(){
+	alert("Dentro de addBodegaPersonal");
+	contBodegaPersonal++;
+	var html='<span class="comment"><input class="inputNuevoProducto" id="inputNombreBodegaPersonal'+contBodegaPersonal+'" type="text"></span><input class="inputNuevoProducto" id="inputCantidad'+contBodegaPersonal+'" type="text"></span>';
+	alert($("#listaBodegaPersonal"));
+	$("#listaBodegaPersonal").append(html);
+	alert("final cargar lista");
+	$("#listaBodegaPersonal").listview('refresh');
+} */
+
+/**
+ * 
+ * ===========================================================================================================================================
+ */
+</script>
+<body>
+<div data-role="page" id="product_new" >
+<script>
+</script>
+	<div data-role="header" data-position="fixed">
+		<h3>
+			LiteWinery
+		</h3>
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li>
+					<a href="index.html" data-transition="fade" data-theme="" data-icon="home">
+						Home
+					</a>
+				</li>
+				<li>
+					<!-- <a href="javascript:insertarProducto();" data-theme="" data-icon="plus">
+						Save
+					</a> -->
+					<a href="#" onclick="insertarProducto();" data-theme="" data-icon="plus" id="saveButton">
+						Save
+					</a>
+					
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="content" id="contenido">
+		<ul data-role="listview" data-inset="true">
+			<li class="title">General</li>
+			<li class="withoutimage"><span class="name">Nombre</span><span class="comment"><input class="inputNuevoProducto" id="inputNombre" type="text"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Añada</span><span class="comment"><input class="inputNuevoProducto" id="inputAnada" type="text"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Tipo</span><span class="comment"><input class="inputNuevoProducto" id="inputTipoVino" type="text"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Alcohol</span>
+				<div class="ui-grid-c">
+					<div class="ui-block-a"><span class="alcohol"><input class="inputNuevoProducto" id="inputAlcohol" type="text"></span></div>
+					<div class="ui-block-b" id=divPercentaje><span class="name" >%</span></div>
+				</div>
+			</li>
+			<li class="withoutimage"><span class="name">Bodega</span><span class="comment"><input class="inputNuevoProducto" id="inputBodega" type="text"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Denominación de origen</span><span class="comment"><input class="inputNuevoProducto" id="inputdOrigen" type="text"></span>
+			</li>
+			<li class="withoutimage"><span class="name">País de origen</span><span class="comment"><input class="inputNuevoProducto" id="inputPaisOrigen" type="text"></span>
+			</li>
+			<li class="withoutimage" style="height:60px!important"><span class="name">Maduración</span><span class="comment" style="white-space:normal;"><input class="inputNuevoProducto" id="inputMaduracion" type="text"></span>
+			</li>
+		</ul> 
+
+<!-- <ul  data-role="listview" data-inset="true">
+		<li class="withoutimage" style="height:75px!important" id="listaVariedadesUva">
+			<span class="name">Variedades de uva</span>
+			<ul  data-role="listview" data-inset="true">
+				<li><span class="comment"><input class="inputNuevoProducto" id="inputTipoUva0" type="text"></span><span><button  id="buttonAnadirUva" onclick="addVariedadUva()">+</button></span></li>
+				<li><span class="comment"><input class="inputNuevoProducto" id="inputPorcentajeUva0" type="text"></span><span class="name">%</span></li>
+				<li></li>
+			</ul>
+		</li>
+	</ul>
+	<ul data-role="listview" data-inset="true">
+			<li class="title">Notas de cata personal</li>
+			<li class="withoutimage"><span class="name">Color</span><span class="comment"><input class="inputNuevoProducto" id="inputColorPuntuacion" type="text"></span>
+				<span class="comment"><input class="inputNuevoProducto" id="inputColorOpinion" type="text"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Aroma</span><span class="comment"><input class="inputNuevoProducto" id="inputAromaPuntuacion" type="text"></span>
+				<span class="comment"><input class="inputNuevoProducto" id="inputAromaOpinion" type="text"></span>
+			</li>
+			<li class="withoutimage" style="height:60px!important"><span class="name">Gusto</span><span class="comment" style="white-space:normal;"><input class="inputNuevoProducto" id="inputGustoPuntuacion" type="text"></span>
+				<span class="comment" style="white-space:normal;"><input class="inputNuevoProducto" id="inputGustoOpinion" type="text"></span>
+			</li>
+			<li class="withoutimage"><span class="name">Global</span><span class="comment"><input class="inputNuevoProducto" id="inputGlobalPuntuacion" type="text"></span>
+				<span class="comment"><input class="inputNuevoProducto" id="inputGlobalOpinion" type="text"></span>
+			</li>
+		</ul>
+
+		<ul data-role="listview" data-inset="true">
+			<li class="title">Bodega personal</li>
+			<li class="withoutimage" id="listaBodegaPersonal"><span class="name" id="inputNombreBodegaPersonal0">Mi Bodega</span><span class="comment"><input class="inputNuevoProducto" id="inputCantidad0" type="text"></span>
+				<span class="comment"><input class="inputNuevoProducto" id="inputNombreBodegaPersonal1" type="text"></span><input class="inputNuevoProducto" id="inputCantidad1" type="text"></span>
+				<span><button  id="buttonAnadirBodegaPersonal" onclick="addBodegaPersonal()" >+</button></span><br>
+			</li>
+		</ul>
+
+		<ul id="listaTiendas" data-role="listview" data-inset="true">
+			<li class="title">Lugares de compra</li>
+			<li class="withoutimage" style="height:60px!important"><span class="name"><input class="inputNuevoProducto" id="inputNombreTienda0" type="text"></span>&nbsp;
+				<span class="comment"><input class="inputNuevoProducto" id="inputDireccion0" type="text"></span>&nbsp;
+				<span class="comment"><input class="inputNuevoProducto" id="inputPrecio0" type="text"></span>&nbsp;
+				<span class="comment"><input class="inputNuevoProducto" id="inputFechaActualizada0" type="text"></span> <br>
+				<span class="comment"><button onclick="addTienda()">+</button></span><br>
+			</li>
+		
+		</ul>
+
+		<ul data-role="listview" data-inset="true">
+			<li class="title">Notas</li>
+			<li class="withoutimage"><span id="labelAnotacionFecha0" class="name"></span><span class="comment"><input class="inputNuevoProducto" id="inputAnotacion0" type="text"></span>
+			</li>
+		</ul> -->
+	</div>
+	<div data-role='popup' id='popSave'>
+	
+	</div>
+	
+	<div data-role="footer">
+		<div  data-role="footer" data-position="fixed">
+		</div>
+	</div>
+</div>	
+</body>
+
+</html>
