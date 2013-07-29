@@ -1,12 +1,8 @@
 
-document.addEventListener("deviceready", onDeviceReady, false);
 
-// PhoneGap is ready
-//
-function onDeviceReady() {
 	LiteWinery.Database.openDataBase();
 	LiteWinery.Installer.review(liteWinery_installer_success, liteWinery_installer_error);
-}
+
 
 function liteWinery_installer_success () {
 	alert("1");
