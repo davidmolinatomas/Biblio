@@ -9,11 +9,12 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta content="wine, winery" name="keywords" />
 	<meta content="Personal Lite Winery" name="description" />
-	
+	<script src="js/libs/jquery.mobile-1.3.1.js"></script>
+	<script src="js/libs/jquery-1.10.1.js"></script>
 	<script src="js/libs/include.js"></script>
-	<script src="js/lite-dependencies.js"></script>
 <script type="text/javascript" charset="utf-8">
 document.addEventListener("deviceready", function() {
+//$(document).ready(function() {
 var data_theme = "a";
 var data_content_theme="d";
 var data_filter_theme="c";
@@ -21,10 +22,7 @@ var data_divider_theme="d";
 
 include("css/themes/litewinery/litewinery.css");
 
-//include("js/libs/jquery-1.10.1.js");
-include("js/libs/jquery.mobile-1.3.1.js");
-
-//window.$ = window.jQuery = WLJQ;
+window.$ = window.jQuery;
 
 include("js/business/constants.js");
 //include("js/lite-init.js");
@@ -36,16 +34,16 @@ include("js/business/InstallerObject.js");
 include("js/business/VinoBusinessObject.js");
 include("js/business/LiteWineryObject.js");
 
-include("js/bo/vinoBO.js");
+//include("js/bo/vinoBO.js");
 include("js/lite-commons.js");
-
-include("js/product_list.js");
-include("js/product_new.js");
-include("js/product_edit.js");
-include("js/product_info.js");
-include("js/product_search.js");
 include("js/index.js");
 
+
+//include("js/product_list.js");
+//include("js/product_new.js");
+//include("js/product_edit.js");
+//include("js/product_info.js");
+//include("js/product_search.js");
 
 },false);
 </script>
